@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="style.css">
+        <title>Bahar Shopping</title>
+    </head>
+
+    <body>
+        <header class="header">
+            <h1 class="header__title">Bahar Shopping
+                <i class="fa-solid fa-cart-shopping">
+                    <span class="cart-number">5</span>
+                </i>
+            </h1>
+            <section class="header__body">
+                <div class="search"> <i class="fa-solid fa-magnifying-glass"></i><input type="text" class="search"
+                        placeholder="Product title...">
+                </div>
+                <div class="sort">
+                    <select>
+                        <option value="all">All</option>
+                        <option value="clothe">Clothe</option>
+                        <option value="jewellery">Jewellery</option>
+                        <option value="electronics">Electronics</option>
+                    </select>
+                </div>
+            </section>
+        </header>
+        <div class="cart-container">
+            <div class="backdrop"></div>
+            <div class="cart">
+                <h3 class="cart__title">Your Cart</h3>
+                <section class="cart__items">
+                    <div class="item">
+                        <img src="/testImg.jpg" alt="product-img" class="item__img">
+                        <div class="item__details">
+                            <p class="item__title">title</p>
+                            <p class="item__price">55.25$</p>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__quantity">
+                                <i class="fa-solid fa-chevron-up"></i>
+                                <p class="item-number">4</p>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                    </div>
+                </section>
+                <section class="cart__footer">
+                    <p class="total-price">Total Price:</p>
+                    <div class="cart__footer__btns">
+                        <button class="clear-btn">Clear</button>
+                        <button class="confirm-btn">Confirm</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <main class="products-container">
+            <div class="product">
+                <img src="/testImg.jpg" alt="product img" class="product__img">
+                <div class="product__details">
+                    <p class="product__title">title</p>
+                    <p class="product__price">45.75$</p>
+                </div>
+                <button class="add-to-cart-btn">Add to cart</button>
+            </div>
+            <div class="product">
+                <img src="/testImg.jpg" alt="product img" class="product__img">
+                <div class="product__details">
+                    <p class="product__title">title</p>
+                    <p class="product__price">45.75$</p>
+                </div>
+                <button class="add-to-cart-btn">Add to cart</button>
+            </div>
+            <div class="product">
+                <img src="/testImg.jpg" alt="product img" class="product__img">
+                <div class="product__details">
+                    <p class="product__title">title</p>
+                    <p class="product__price">45.75$</p>
+                </div>
+                <button class="add-to-cart-btn">Add to cart</button>
+            </div>
+            <div class="product">
+                <img src="/testImg.jpg" alt="product img" class="product__img">
+                <div class="product__details">
+                    <p class="product__title">title</p>
+                    <p class="product__price">45.75$</p>
+                </div>
+                <button class="add-to-cart-btn">Add to cart</button>
+            </div>
+            <div class="product">
+                <img src="/testImg.jpg" alt="product img" class="product__img">
+                <div class="product__details">
+                    <p class="product__title">title</p>
+                    <p class="product__price">45.75$</p>
+                </div>
+                <button class="add-to-cart-btn">Add to cart</button>
+            </div>
+        </main>
+    </body>
+
+</html>
