@@ -156,14 +156,6 @@ body {
     background-color: transparent;
 }
 
-.cart::-webkit-scrollbar-thumb:hover {
-    background-color: var(--primary-color);
-}
-
-.cart::-webkit-scrollbar-thumb:active {
-    background-color: var(--primary-color);
-}
-
 .cart__title {
     font-weight: 700;
     color: var(--primary-color);
@@ -302,7 +294,15 @@ body {
     padding: 0 2rem;
 }
 
+.products-container > p {
+    color: var(--primary-color);
+    font-weight: 400;
+    font-size: 2rem;
+}
+
 .product {
+    max-width: 477pc;
+    min-width: 220px;
     height: 35rem;
     background-color: #fff;
     box-shadow: 0 0 14px #d2dfe8;

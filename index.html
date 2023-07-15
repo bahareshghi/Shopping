@@ -19,14 +19,14 @@
                 </i>
             </h1>
             <section class="header__body">
-                <div class="search"> <i class="fa-solid fa-magnifying-glass"></i><input type="text" class="search"
-                        placeholder="Product title...">
+                <div class="search"> <i class="fa-solid fa-magnifying-glass"></i><input type="text"
+                        class="search__input" placeholder="Product title...">
                 </div>
                 <div class="sort">
-                    <select>
+                    <select class="select">
                         <option value="all">All</option>
-                        <option value="clothe">Clothe</option>
-                        <option value="jewellery">Jewellery</option>
+                        <option value="clothing">Clothes</option>
+                        <option value="jewelery">Jewellery</option>
                         <option value="electronics">Electronics</option>
                     </select>
                 </div>
@@ -64,7 +64,9 @@
             </div>
         </div>
 
-        <main class="products-container"></main>
+        <main class="products-container">
+            <p>Products are loading, please wait...</p>
+        </main>
 
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="js/App.js" type="module"></script>
