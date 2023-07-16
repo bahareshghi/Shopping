@@ -124,6 +124,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    backdrop-filter: blur(2px);
 }
 
 .cart {
@@ -294,7 +295,7 @@ body {
     padding: 0 2rem;
 }
 
-.products-container > p {
+.products-container>p {
     color: var(--primary-color);
     font-weight: 400;
     font-size: 2rem;

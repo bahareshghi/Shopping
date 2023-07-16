@@ -15,9 +15,9 @@ class Products {
   getProducts() {
     axios.get('https://fakestoreapi.com/products').then((products) => {
       allProducts = products.data;
-      // Update DOM:
+      // Update DOM
       this.createProducts(products.data);
-      // Update Storage:
+      // Update Storage
       Storage.saveProducts(products.data);
     });
   }
@@ -44,7 +44,7 @@ class Products {
              `;
     });
 
-    // Update DOM:
+    // Update DOM
     productsContainer.innerHTML = productsDOM;
     // Search-Sort  Products
     searchContainer.addEventListener('input', (e) => {
