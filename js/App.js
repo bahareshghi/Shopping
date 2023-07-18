@@ -4,9 +4,9 @@ import Storage from './Storage.js';
 document.addEventListener('DOMContentLoaded', () => {
   // Cart
   Cart;
-  // Create Products
+  // Create products
   Products.getProducts();
-  // Create Cart Items
+  // Create cart items
   const cartItems = Storage.getCartItems();
   Cart.createProduct(cartItems);
 });

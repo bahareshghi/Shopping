@@ -18,7 +18,7 @@ class Products {
       allProducts = products.data;
       // Update DOM
       this.createProducts(products.data);
-      // Update Storage
+      // Update storage
       Storage.saveProducts(products.data);
     });
   }

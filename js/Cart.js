@@ -4,13 +4,15 @@ const cartIcon = document.querySelector('.cart-icon');
 const backdrop = document.querySelector('.backdrop');
 const clearBtn = document.querySelector('.clear-btn');
 const cartItems = document.querySelector('.cart__items');
-let cart = Storage.getCartItems();
 
 class Cart {
   constructor() {
     cartIcon.addEventListener('click', () => this.showCart());
     backdrop.addEventListener('click', () => this.closeCart());
     clearBtn.addEventListener('click', () => this.closeCart());
+    cartContainer.addEventListener('click', (e) =>
+      this.cartActions(e.target.classList[1], e.target)
+    );
   }
 
   showCart() {
@@ -21,48 +23,26 @@ class Cart {
     cartContainer.style.transform = 'translateY(-200vh)';
   }
 
-  addProduct ( product, btn )
-  {
+  addProduct(product, btn) {
+    let cart = Storage.getCartItems();
     product = { ...product, quantity: 1 };
     cart = [...cart, product];
-    // Update Storage
+    // Update storage
     Storage.saveCart(cart);
 
     // Update DOM
-    this.createProduct([product]);
+    this.createProduct(cart);
     btn.innerText = 'In Cart';
     btn.disabled = true;
   }
 
-  createProduct(data) {
-    if (data.length === 0) {
+  createProduct(products) {
+    if (products.length === 0) {
+      cartItems.innerHTML = '';
       return;
-    } else if (data.length === 1) {
-      const product = data[0];
-      const newProduct = document.createElement('div');
-      newProduct.classList.add('item');
-      const productTitle =
-        product.title.length >= 10 ? product.title.slice(0, 10) + '...' : product.title;
-
-      newProduct.innerHTML = `
-              <img src="${product.image}" alt="product-img" class="item__img">
-              <div class="item__details">
-                  <p class="item__title">${productTitle}</p>
-                  <p class="item__price">${product.price}$</p>
-              </div>
-              <div class="item__right">
-                  <div class="item__quantity" data-id=${product.id}>
-                      <i class="fa-solid fa-chevron-up"></i>
-                      <p class="item-number">4</p>
-                      <i class="fa-solid fa-chevron-down"></i>
-                  </div>
-                  <i class="fa-solid fa-trash" data-id=${product.id}></i>
-              </div>
-      `;
-      cartItems.appendChild(newProduct);
     } else {
       let productsDOM = '';
-      data.forEach((product) => {
+      products.forEach((product) => {
         const productTitle =
           product.title.length >= 12
             ? product.title.slice(0, 12) + '...'
@@ -76,10 +56,10 @@ class Cart {
              <p class="item__price">${product.price}$</p>
         </div>
         <div class="item__right">
-             <div class="item__quantity" data-id=${product.id}>
-                <i class="fa-solid fa-chevron-up"></i>
-                <p class="item-number">4</p>
-                <i class="fa-solid fa-chevron-down"></i>
+             <div class="item__quantity">
+                <i class="fa-solid fa-chevron-up" data-id=${product.id}></i>
+                <p class="item-number">${product.quantity}</p>
+                <i class="fa-solid fa-chevron-down" data-id=${product.id}></i>
              </div>
           <i class="fa-solid fa-trash" data-id=${product.id}></i>
         </div>
@@ -88,6 +68,24 @@ class Cart {
       });
       // Update DOM
       cartItems.innerHTML = productsDOM;
+    }
+  }
+
+  cartActions(actionType, e) {
+    let cart = Storage.getCartItems();
+    if (actionType === 'fa-trash') {
+      // Update DOM
+      const filteredProducts = cart.filter(
+        (item) => item.id !== parseInt(e.dataset.id)
+      );
+      cart = filteredProducts;
+      this.createProduct(cart);
+      // Update storage
+      Storage.saveCart(filteredProducts);
+    } else if (actionType === 'fa-chevron-up') {
+      console.log('+');
+    } else if (actionType === 'fa-chevron-down') {
+      console.log('-');
     }
   }
 }
