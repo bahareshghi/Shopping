@@ -8,6 +8,16 @@ class Storage {
       ? JSON.parse(localStorage.getItem('products'))
       : [];
   }
+
+  saveCart(itemsToSave) {
+    localStorage.setItem('cart', JSON.stringify(itemsToSave));
+  }
+
+  getCartItems() {
+    return JSON.parse(localStorage.getItem('cart'))
+      ? JSON.parse(localStorage.getItem('cart'))
+      : [];
+  }
 }
 
 export default new Storage();

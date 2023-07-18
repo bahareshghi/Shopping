@@ -5,7 +5,6 @@ const searchContainer = document.querySelector('.search__input');
 class searchProducts {
   searchProducts(products, searchValue) {
     sortContainer.value = 'all';
-    console.log(sortContainer);
     const filteredProducts = products.filter((product) =>
       product.title.toLowerCase().includes(searchValue.trim().toLowerCase())
     );

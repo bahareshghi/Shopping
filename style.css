@@ -189,7 +189,7 @@ body {
 .item__img {
     width: 25%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 4px 0 0 4px;
 }
 
