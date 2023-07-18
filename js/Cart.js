@@ -83,9 +83,42 @@ class Cart {
       // Update storage
       Storage.saveCart(filteredProducts);
     } else if (actionType === 'fa-chevron-up') {
-      console.log('+');
+      const selectedProduct = cart.find(
+        (item) => item.id === parseInt(e.dataset.id)
+      );
+      selectedProduct.quantity++;
+      // Update storage
+      Storage.saveCart(cart);
+      // Update DOM
+      e.nextElementSibling.innerText = selectedProduct.quantity++;
     } else if (actionType === 'fa-chevron-down') {
-      console.log('-');
+      const selectedProduct = cart.find(
+        (item) => item.id === parseInt(e.dataset.id)
+      );
+      if (selectedProduct.quantity === 1) {
+        // Update DOM
+        const filteredProducts = cart.filter(
+          (item) => item.id !== parseInt(e.dataset.id)
+        );
+        cart = filteredProducts;
+        this.createProduct(cart);
+        const addToCartBtns = [
+          ...document.querySelectorAll('.add-to-cart-btn'),
+        ];
+        const button = addToCartBtns.find(
+          (btn) => parseInt(btn.dataset.id) === selectedProduct.id
+        );
+        button.innerText = 'Add to cart';
+        button.disabled = false;
+        // Update storage
+        Storage.saveCart(filteredProducts);
+      } else {
+        selectedProduct.quantity--;
+        // Update storage
+        Storage.saveCart(cart);
+        // Update DOM
+        e.previousElementSibling.innerText = selectedProduct.quantity--;
+      }
     }
   }
 }
