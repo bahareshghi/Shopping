@@ -4,6 +4,7 @@ const cartIcon = document.querySelector('.cart-icon');
 const backdrop = document.querySelector('.backdrop');
 const clearBtn = document.querySelector('.clear-btn');
 const cartItems = document.querySelector('.cart__items');
+const cartPrice = document.querySelector('.total-price');
 
 class Cart {
   constructor() {
@@ -34,6 +35,7 @@ class Cart {
     this.createProduct(cart);
     btn.innerText = 'In Cart';
     btn.disabled = true;
+    this.cartValue();
   }
 
   createProduct(products) {
@@ -120,6 +122,16 @@ class Cart {
         e.previousElementSibling.innerText = selectedProduct.quantity--;
       }
     }
+    this.cartValue();
+  }
+
+  cartValue() {
+    const cart = Storage.getCartItems();
+    let total = 0;
+    cart.forEach(
+      (item) => (total = Math.trunc(total + item.price * item.quantity))
+    );
+    cartPrice.innerHTML = `Total price: ${total}$`;
   }
 }
 

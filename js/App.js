@@ -9,4 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Create cart items
   const cartItems = Storage.getCartItems();
   Cart.createProduct(cartItems);
+  // Cart value
+  Cart.cartValue();
 });
