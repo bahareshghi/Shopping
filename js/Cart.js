@@ -82,28 +82,11 @@ class Cart {
 
   cartActions(actionType, e) {
     let cart = Storage.getCartItems();
-    const addToCartBtns = [...document.querySelectorAll('.add-to-cart-btn')];
     if (actionType === 'fa-trash') {
-      // Update DOM
-      addToCartBtns.find((item) => e.dataset.id == item.dataset.id);
-      const selectedProduct = cart.find(
+      const deletedProduct = cart.find(
         (item) => item.id === parseInt(e.dataset.id)
       );
-      const button = addToCartBtns.find(
-        (btn) => parseInt(btn.dataset.id) === selectedProduct.id
-      );
-      button.innerText = 'Add to cart';
-      button.disabled = false;
-
-      const filteredProducts = cart.filter(
-        (item) => item.id !== parseInt(e.dataset.id)
-      );
-      cart = filteredProducts;
-      this.createProduct(cart);
-      cartNumber.innerText = cart.length;
-
-      // Update storage
-      Storage.saveCart(filteredProducts);
+      this.deleteProduct(deletedProduct);
     } else if (actionType === 'fa-chevron-up') {
       const selectedProduct = cart.find(
         (item) => item.id === parseInt(e.dataset.id)
@@ -118,22 +101,7 @@ class Cart {
         (item) => item.id === parseInt(e.dataset.id)
       );
       if (selectedProduct.quantity === 1) {
-        // Update DOM
-        const filteredProducts = cart.filter(
-          (item) => item.id !== parseInt(e.dataset.id)
-        );
-        cart = filteredProducts;
-        this.createProduct(cart);
-
-        const button = addToCartBtns.find(
-          (btn) => parseInt(btn.dataset.id) === selectedProduct.id
-        );
-        button.innerText = 'Add to cart';
-        button.disabled = false;
-        cartNumber.innerText = cart.length;
-
-        // Update storage
-        Storage.saveCart(filteredProducts);
+        this.deleteProduct(selectedProduct);
       } else {
         selectedProduct.quantity--;
         // Update storage
@@ -142,6 +110,29 @@ class Cart {
         e.previousElementSibling.innerText = selectedProduct.quantity--;
       }
     } else if (actionType === 'clear-btn') {
+      this.deleteProduct(cart);
+    }
+    this.cartValue();
+  }
+
+  deleteProduct(data) {
+    const addToCartBtns = [...document.querySelectorAll('.add-to-cart-btn')];
+    if (data.length === 1) {
+      let cart = Storage.getCartItems();
+
+      const button = addToCartBtns.find(
+        (btn) => parseInt(btn.dataset.id) === product.id
+      );
+      button.innerText = 'Add to cart';
+      button.disabled = false;
+
+      const filteredProducts = cart.filter((item) => item.id !== product.id);
+      cart = filteredProducts;
+      this.createProduct(cart);
+      cartNumber.innerText = cart.length;
+      // Update storage
+      Storage.saveCart(filteredProducts);
+    } else {
       // Update storage
       cart = [];
       Storage.saveCart(cart);
@@ -153,7 +144,6 @@ class Cart {
       });
       cartNumber.innerText = cart.length;
     }
-    this.cartValue();
   }
 
   cartValue() {
