@@ -86,7 +86,7 @@ class Cart {
       const deletedProduct = cart.find(
         (item) => item.id === parseInt(e.dataset.id)
       );
-      this.deleteProduct(deletedProduct);
+      this.deleteProduct([deletedProduct]);
     } else if (actionType === 'fa-chevron-up') {
       const selectedProduct = cart.find(
         (item) => item.id === parseInt(e.dataset.id)
@@ -101,7 +101,7 @@ class Cart {
         (item) => item.id === parseInt(e.dataset.id)
       );
       if (selectedProduct.quantity === 1) {
-        this.deleteProduct(selectedProduct);
+        this.deleteProduct([selectedProduct]);
       } else {
         selectedProduct.quantity--;
         // Update storage
@@ -115,11 +115,10 @@ class Cart {
     this.cartValue();
   }
 
-  deleteProduct(data) {
+  deleteProduct(products) {
     const addToCartBtns = [...document.querySelectorAll('.add-to-cart-btn')];
-    if (data.length === 1) {
-      let cart = Storage.getCartItems();
-
+    let cart = Storage.getCartItems();
+    products.forEach((product) => {
       const button = addToCartBtns.find(
         (btn) => parseInt(btn.dataset.id) === product.id
       );
@@ -131,19 +130,9 @@ class Cart {
       this.createProduct(cart);
       cartNumber.innerText = cart.length;
       // Update storage
-      Storage.saveCart(filteredProducts);
-    } else {
-      // Update storage
-      cart = [];
-      Storage.saveCart(cart);
-      // Update DOM
-      cartItems.innerHTML = '';
-      addToCartBtns.forEach((btn) => {
-        btn.innerText = 'Add to cart';
-        btn.disabled = false;
-      });
+      Storage.saveCart( cart );
       cartNumber.innerText = cart.length;
-    }
+    });
   }
 
   cartValue() {
