@@ -1,7 +1,7 @@
 # Shopping
 
 <div align="center">
-<img src="TodoList.PNG" style="border-radius:10px;">
+<img src="Shopping.PNG" style="border-radius:10px;">
 </div>
 
 This is a store project where you can add products to the shopping cart, change their number, and remove them from the shopping cart. You can also search and sort products.
